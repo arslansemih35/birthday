@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi Ki Doğdun Anneciğim</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;600&display=swap');
+
+        :root {
+            /* Rose Gold ve Pastel Tonlar */
+            --primary: #ff9a9e;
+            --secondary: #fad0c4;
+            --rose-gold: #E0A595;
+            --accent: #ffecd2;
+            --dark-bg: #2d1b4e; /* Derin Mürdüm/Mor */
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --text-color: #F8FAFC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--dark-bg);
+            /* Zarif ve yumuşak geçişli arka plan */
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(255, 154, 158, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(255, 210, 215, 0.1) 0%, transparent 50%);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Uçuşan Kalpler Arka Planı */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 192, 203, 0.3);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Bölümü */
+        .hero {
+            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 25px;
+            border: 1px solid rgba(255, 154, 158, 0.4);
+            border-radius: 50px;
+            color: var(--secondary);
+            font-size: 0.9em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            background: rgba(255, 154, 158, 0.05);
+            backdrop-filter: blur(5px);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5em, 9vw, 6.5em);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 40px rgba(255, 154, 158, 0.3);
+            animation: scaleIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .hero-sub {
+            font-family: 'Great Vibes', cursive; /* El yazısı fontu */
+            font-size: 2.5em;
+            color: var(--rose-gold);
+            font-weight: 400;
+            margin: 0 auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInUp 1.2s 0.3s backwards;
+        }
+
+        /* Mektup Kartı */
+        .letter-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3); /* Üst kısım daha parlak */
+            border-radius: 50px 50px 50px 0; /* Zarif köşe detayı */
+            padding: 80px 60px;
+            margin: 60px 0;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 154, 158, 0.3);
+        }
+
+        /* Arkaplanda büyük çiçek/kalp efekti */
+        .letter-card::after {
+            content: '❤';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 400px;
+            color: rgba(255, 154, 158, 0.03);
+            z-index: -1;
+        }
+
+        .message-text {
+            font-size: 1.35em;
+            line-height: 2;
+            color: #f0f0f0;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* Dilekler Grid */
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin: 80px 0 50px;
+            color: #fff;
+        }
+
+        .section-title span {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--rose-gold);
+            border-radius: 10px;
+        }
+
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .wish-item {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+            padding: 40px 30px;
+            border-radius: 30px; /* Daha yuvarlak */
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .wish-item:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(145deg, rgba(255,154,158,0.15) 0%, rgba(255,255,255,0.02) 100%);
+            border-color: rgba(255,154,158,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .wish-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: inline-block;
+            filter: drop-shadow(0 0 15px rgba(255,154,158,0.4));
+        }
+
+        .wish-item h3 {
+            color: var(--secondary);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .wish-item p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.05em;
+        }
+
+        /* Pasta ve Kutlama */
+        .celebration-area {
+            text-align: center;
+            margin: 100px 0 60px;
+        }
+
+        .celebration-area h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5em;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .confetti-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #5d2a42;
+            border: none;
+            padding: 22px 70px;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(255, 154, 158, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confetti-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 154, 158, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9em;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .letter-card { padding: 40px 25px; border-radius: 30px; }
+            h1 { font-size: 3.8em; }
+            .hero-sub { font-size: 2em; }
+            .message-text { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="hero-badge">Canım Anneme</div>
+            <h1>İYİ Kİ DOĞDUN<br>MELEĞİM</h1>
+            <p class="hero-sub">Evimizin kalbi, hayatımızın en güzel rengi...</p>
+        </header>
+
+        <div class="letter-card">
+            <div class="message-text">
+                <p>
+                    Biricik Anneciğim,
+                    <br><br>
+                    Bugün sadece bir doğum günü değil, bizim için dünyanın en güzel günlerinden biri. Çünkü bugün, hayatımıza anlam katan, bizi karşılıksız seven <span class="highlight">o güzel kalbin</span> dünyaya geldiği gün.
+                    <br><br>
+                    Her düştüğümüzde bizi kaldıran, her üzüldüğümüzde şifa olan ellerin; bize dünyadaki cenneti yaşatıyor. Senin sevgin, kelimelerin tarif edemeyeceği kadar büyük ve eşsiz.
+                    <br><br>
+                    Yüzündeki gülümseme hiç solmasın. <span class="highlight">Seni dünyalar kadar seviyoruz.</span> İyi ki varsın, iyi ki bizim annemizsin!
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-title"><span>Sana Dileklerimiz</span></h2>
+        <div class="wishes-grid">
+            <div class="wish-item">
+                <div class="wish-icon">🌸</div>
+                <h3>Huzur</h3>
+                <p>Gönlün hep ferah, günlerin bahar bahçeleri gibi huzur dolu olsun.</p>
+            </div>
+            <div class="wish-item">
+                <div class="wish-icon">💖</div>
+                <h3>Sevgi</h3>
+                <p>Bize verdiğin sevginin bin katı seni bulsun. Hep sevil, hep mutlu ol.</p>
+            </div>
+            <div class="wish-item">
+                <div class="wish-icon">☀️</div>
+                <h3>Sağlık</h3>
+                <p>Canım annem, sağlıklı ve enerji dolu nice güzel yaşların olsun.</p>
+            </div>
+        </div>
+
+        <div class="celebration-area">
+            <h3>Seni Çok Seviyoruz</h3>
+            <p style="opacity: 0.8; margin-bottom: 20px;">Bu özel gün şerefine:</p>
+            <button class="confetti-btn" onclick="burstConfetti()">💐 İYİ Kİ DOĞDUN! 💐</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>❤️ Evlatların Seni Çok Seviyor ❤️</p>
+        <p style="margin-top: 10px; font-size: 0.8em;">Özel Gün Hatırası - 2025</p>
+    </footer>
+
+    <script>
+        // Arka plan kalplerini oluştur
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            const heartCount = 15;
+            
+            for(let i=0; i<heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 30 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // Görünürlük Animasyonu (Scroll)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.wish-item').forEach((el, index) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Konfeti (Kalp ve Çiçek Karışık)
+        function burstConfetti() {
+            const colors = ['#ff9a9e', '#fad0c4', '#fbc2eb', '#ffffff', '#ffd1ff'];
+            const shapes = ['❤', '✿', '●']; 
+
+            for (let i = 0; i < 150; i++) {
+                createParticle(colors, shapes);
+            }
+        }
+
+        function createParticle(colors, shapes) {
+            const particle = document.createElement('div');
+            particle.classList.add('confetti');
+            
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.innerText = shape;
+            particle.style.color = color;
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = '-20px';
+            particle.style.fontSize = Math.random() * 15 + 10 + 'px';
+            
+            const duration = Math.random() * 3 + 2 + 's';
+            particle.style.animationDuration = duration;
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => { particle.remove(); }, 5000);
+        }
+
+        window.onload = () => {
+            setTimeout(burstConfetti, 1000);
+        }
+    </script>
+</body>
+</html>
